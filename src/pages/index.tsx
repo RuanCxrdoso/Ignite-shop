@@ -1,14 +1,10 @@
 import Image from "next/image"
-import { styled } from "../styles"
 import { HomeContainer, Product } from "../styles/pages/home"
 import { GetStaticProps } from "next"
 import { stripe } from "../lib/stripe"
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
-import camiseta1 from '../assets/camisetas/1.png'
-import camiseta2 from '../assets/camisetas/2.png'
-import camiseta3 from '../assets/camisetas/3.png'
 import Stripe from "stripe"
 
 interface productsTypes {
@@ -20,7 +16,7 @@ interface productsTypes {
   }[]
 }
 
-export default function Home({ products }: productsTypes) {
+export default function Home({ products, priceFormatter }: productsTypes) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 3,
@@ -61,7 +57,10 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount / 100,
+      price: new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      }).format(price.unit_amount / 100),
     }
   })
 
