@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { styled } from "../styles"
 import { HomeContainer, Product } from "../styles/pages/home"
-import { GetServerSideProps } from "next"
+import { GetStaticProps } from "next"
 import { stripe } from "../lib/stripe"
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
@@ -48,7 +48,8 @@ export default function Home({ products }: productsTypes) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// Utilizando SSG para a Home, as props retornadas são coletadas no componente da page
+export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price']
   })
@@ -67,6 +68,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       products
-    }
+    },
+    revalidate: 60 * 60 * 2, // A cada duas horas será gerada e armazenada em cache uma nova static page
   }
 }

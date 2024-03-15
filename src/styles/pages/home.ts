@@ -39,7 +39,7 @@ export const Product = styled('a', {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
 
     transform: 'translateY(110%)',
-    opacity: '0px',
+    opacity: 0,
     transition: 'all 0.3s ease-in-out',
 
     strong: {
@@ -56,7 +56,7 @@ export const Product = styled('a', {
   '&:hover': {
     footer: {
       transform: 'translateY(0%)',
-      opactity: 1
+      opacity: 1
     }
   }
 })
