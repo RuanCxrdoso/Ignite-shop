@@ -74,11 +74,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { id: 'prod_Pjk9HX6UY8df0q' } },
       { params: { id: 'prod_Pm135Pvu4303ag' } },
     ],
-    fallback: true,
+    fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
+  if (!params) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+      
+    }
+  }
+
   const productId = params.id
 
   const product = await stripe.products.retrieve(productId, {
@@ -91,7 +101,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
     id: product.id,
     name: product.name,
     imageUrl: product.images[0],
-    price: new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price.unit_amount / 100),
+    price: price.unit_amount ? new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price.unit_amount / 100): 'R$99,90',
     description: product.description,
     priceId: price.id
   }

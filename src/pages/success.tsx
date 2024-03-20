@@ -60,10 +60,10 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     expand: ['line_items', 'line_items.data.price.product']
   })
 
-  const product = session.line_items.data[0].price.product as Stripe.Product
+  const product = session.line_items?.data[0].price?.product as Stripe.Product
 
   const productPurchaseDetail = {
-    customerName: session.customer_details.name,
+    customerName: session.customer_details?.name,
     product: {
       name: product.name,
       imageUrl: product.images[0]
