@@ -5,6 +5,7 @@ import { useState } from "react"
 import Stripe from "stripe"
 import Image from "next/image"
 import axios from "axios"
+import Head from "next/head"
 
 interface productDetailsType {
   productDetail: {
@@ -39,22 +40,28 @@ export default function Product({ productDetail }: productDetailsType) {
   }
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image src={productDetail.imageUrl} width={520} height={480} alt="" />
-      </ImageContainer>
+    <>
+      <Head>
+        <title>{productDetail.name} | Ignite Shop</title>
+      </Head>
 
-      <ProductDetails>
-        <h1>{productDetail.name}</h1>
-        <span>{productDetail.price}</span>
+      <ProductContainer>
+        <ImageContainer>
+          <Image src={productDetail.imageUrl} width={520} height={480} alt="" />
+        </ImageContainer>
 
-        <p>{productDetail.description}</p>
+        <ProductDetails>
+          <h1>{productDetail.name}</h1>
+          <span>{productDetail.price}</span>
 
-        <button disabled={isCreatingCheckoutSession} onClick={handleProductBuy}>
-          Comprar Agora
-        </button>
-      </ProductDetails>
-    </ProductContainer>
+          <p>{productDetail.description}</p>
+
+          <button disabled={isCreatingCheckoutSession} onClick={handleProductBuy}>
+            Comprar Agora
+          </button>
+        </ProductDetails>
+      </ProductContainer>
+    </>
   )
 }
 
@@ -65,8 +72,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { id: 'prod_PjkC1uts9H3OZo' } },
       { params: { id: 'prod_PjkBxwhun0WPSx' } },
       { params: { id: 'prod_Pjk9HX6UY8df0q' } },
+      { params: { id: 'prod_Pm135Pvu4303ag' } },
     ],
-    fallback: false
+    fallback: true,
   }
 }
 
