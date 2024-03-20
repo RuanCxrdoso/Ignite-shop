@@ -4,6 +4,7 @@ import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { stripe } from "../lib/stripe";
 import Stripe from "stripe";
+import Head from "next/head";
 
 interface productPurchaseDetailType {
   productPurchaseDetail: {
@@ -17,21 +18,29 @@ interface productPurchaseDetailType {
 
 export default function Success({ productPurchaseDetail }: productPurchaseDetailType) {
   return (
-    <SuccessContainer>
-      <h1>Compra efetuada!</h1>
+    <>
+      <Head>
+        <title>Parabéns pela compra !</title>
 
-      <ImageContainer>
-        <Image src={productPurchaseDetail.product.imageUrl} width={120} height={110} alt=""/>
-      </ImageContainer>
+        <meta name="robots" content="noindex" />
+      </Head>
 
-      <p>
-        Parabéns pela aquisição <strong>{productPurchaseDetail.customerName}</strong>! Sua <strong>{productPurchaseDetail.product.name}</strong> será enviada logo logo !
-      </p>
+      <SuccessContainer>
+        <h1>Compra efetuada!</h1>
 
-      <Link href='/'>
-        Voltar ao catálogo
-      </Link>
-    </SuccessContainer>
+        <ImageContainer>
+          <Image src={productPurchaseDetail.product.imageUrl} width={120} height={110} alt=""/>
+        </ImageContainer>
+
+        <p>
+          Parabéns pela aquisição <strong>{productPurchaseDetail.customerName}</strong>! Sua <strong>{productPurchaseDetail.product.name}</strong> será enviada logo logo !
+        </p>
+
+        <Link href='/'>
+          Voltar ao catálogo
+        </Link>
+      </SuccessContainer>
+    </>
   )
 }
 
