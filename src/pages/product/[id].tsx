@@ -72,6 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       { params: { id: 'prod_PjkC1uts9H3OZo' } },
       { params: { id: 'prod_PjkBxwhun0WPSx' } },
       { params: { id: 'prod_Pjk9HX6UY8df0q' } },
+      { params: { id: 'prod_Pm135Pvu4303ag' } },
     ],
     fallback: true,
   }
