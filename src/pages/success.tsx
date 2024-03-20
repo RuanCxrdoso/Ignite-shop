@@ -5,8 +5,8 @@ import { GetServerSideProps } from "next";
 import { stripe } from "../lib/stripe";
 import Stripe from "stripe";
 
-interface productPurschaseDetailType {
-  productPurschaseDetail: {
+interface productPurchaseDetailType {
+  productPurchaseDetail: {
     customerName: string,
     product: {
       name: string,
@@ -15,17 +15,17 @@ interface productPurschaseDetailType {
   }
 }
 
-export default function Success({ productPurschaseDetail }: productPurschaseDetailType) {
+export default function Success({ productPurchaseDetail }: productPurchaseDetailType) {
   return (
     <SuccessContainer>
       <h1>Compra efetuada!</h1>
 
       <ImageContainer>
-        <Image src={productPurschaseDetail.product.imageUrl} width={120} height={110} alt=""/>
+        <Image src={productPurchaseDetail.product.imageUrl} width={120} height={110} alt=""/>
       </ImageContainer>
 
       <p>
-        Parabéns pela aquisição <strong>{productPurschaseDetail.customerName}</strong>! Sua <strong>{productPurschaseDetail.product.name}</strong> será enviada logo logo !
+        Parabéns pela aquisição <strong>{productPurchaseDetail.customerName}</strong>! Sua <strong>{productPurchaseDetail.product.name}</strong> será enviada logo logo !
       </p>
 
       <Link href='/'>
@@ -36,6 +36,15 @@ export default function Success({ productPurschaseDetail }: productPurschaseDeta
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (!query.session_id) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      }
+    } 
+  }
+
   const sessionId = String(query.session_id)
 
   const session = await stripe.checkout.sessions.retrieve(sessionId, {
@@ -44,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   const product = session.line_items.data[0].price.product as Stripe.Product
 
-  const productPurschaseDetail = {
+  const productPurchaseDetail = {
     customerName: session.customer_details.name,
     product: {
       name: product.name,
@@ -54,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   return {
     props: {
-      productPurschaseDetail
+      productPurchaseDetail
     }
   }
 }
