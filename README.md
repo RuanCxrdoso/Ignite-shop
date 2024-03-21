@@ -29,7 +29,7 @@ Foram utilizadas as seguintes tecnologias neste projeto:
 <br>
 
 > ## Preview do Projeto 📸
-![Simuacao](./public/simulacao.gif)
+![Simuacao](./igniteShopPreview.gif)
 
 <br>
 <br>
