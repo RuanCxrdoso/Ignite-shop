@@ -42,6 +42,8 @@
 
 O **Ignite Shop** é um projeto desenvolvido na trilha **Ignite** de React da [Rocketseat](https://www.rocketseat.com.br/). Esta aplicação de comércio eletrônico permite aos usuários explorar e comprar uma variedade de camisetas. Utilizando `Next.js` como base, o projeto oferece uma integração completa com a API do `Stripe` para gerenciamento de produtos e facilitação do checkout. Além disso, faz uso do `Server-Side Rendering` (SSR) para renderizar as páginas com dados do lado do servidor, garantindo um carregamento inicial rápido e uma melhor experiência de SEO. Também utiliza `Static Site Generation` (SSG) para gerar páginas estáticas, proporcionando uma navegação ágil e eficiente. Desenvolvido com foco no aprendizado e na prática dos fundamentos do Next.js, o projeto **Ignite Shop** oferece uma oportunidade para aprofundar conhecimentos em desenvolvimento web.
 
+obs: Para testar o checkout insira os números do cartão fictício disponibilizado pelo Stripe: 4242 4242 4242 4242
+
 ---
 
 ## 🔗 Deploy
