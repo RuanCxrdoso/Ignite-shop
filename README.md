@@ -94,7 +94,7 @@ Veja uma demonstração das principais interfaces da aplicação:
 
 ### 📸 Preview
 
-![Simuacao](./igniteShopPreview.gif)
+![igniteShop](https://github.com/RuanCxrdoso/Ignite-shop/assets/86266893/bc807ea8-bae4-48c7-8c5c-1cf6a95c9588)
 
 <p align="center">
   <img
