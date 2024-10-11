@@ -48,7 +48,7 @@ obs: Para testar o checkout insira os números do cartão fictício disponibiliz
 
 ## 🔗 Deploy
 
-O deploy da aplicação pode ser acessada através da seguinte URL: https://ignite-shop-store.vercel.app/
+O deploy da aplicação pode ser acessada através da seguinte URL: https://rcardoso-ignite-shop.vercel.app
 
 ---
 
